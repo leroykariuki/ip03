@@ -1,6 +1,8 @@
 # restaurant.py
+from flask import session
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
+from customer import Customer
 from migrations import Base
 
 class Restaurant(Base):
@@ -14,7 +16,7 @@ class Restaurant(Base):
         return [review.star_rating for review in self.reviews]
 
     def customers(self):
-        return [customer.full_name() for review in self.reviews]
+        return [Customer.full_name() for review in self.reviews]
 
     @classmethod
     def fanciest(cls):
